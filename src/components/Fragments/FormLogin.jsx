@@ -16,7 +16,7 @@ export const FormLogin = () => {
     login(data, (status, res) => {
       if (status) {
         localStorage.setItem("token", res);
-        window.location.href = "/product";
+        window.location.href = "/products";
       } else {
         setLoginFailed(res.response.data);
       }

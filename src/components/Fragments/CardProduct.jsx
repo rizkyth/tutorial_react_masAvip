@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "../Elements/Button";
 
 export const CardProduct = ({ children }) => {
@@ -7,11 +8,11 @@ export const CardProduct = ({ children }) => {
     </>
   );
 };
-const HeaderCard = ({ img }) => {
+const HeaderCard = ({ img, id }) => {
   return (
-    <a href="#">
+    <Link to={`/product/${id}`}>
       <img src={img} alt="product" className="p-8 rounded-t-lg h-80 w-full object-center" />
-    </a>
+    </Link>
   );
 };
 const BodyCard = ({ children, title }) => {

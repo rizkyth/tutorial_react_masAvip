@@ -1,9 +1,9 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { CardProduct } from "../components/Fragments/CardProduct";
 import { Button } from "../components/Elements/Button";
-import { getProduct } from "../services/product,service";
 
 import { useLogin } from "../hooks/useLogin";
+import { getProducts } from "../services/product.service";
 
 // const products = [
 //   {
@@ -41,7 +41,7 @@ export const ProductsPage = () => {
   }, []);
 
   useEffect(() => {
-    getProduct((data) => {
+    getProducts((data) => {
       setProduct([...data]);
       localStorage.setItem("product", JSON.stringify(data));
     });
@@ -107,7 +107,7 @@ export const ProductsPage = () => {
             products.map((product) => {
               return (
                 <CardProduct key={product.id}>
-                  <CardProduct.header img={product.image}></CardProduct.header>
+                  <CardProduct.header img={product.image} id={product.id}></CardProduct.header>
                   <CardProduct.Body title={product.title.substring(0, 10)}>{product.description}</CardProduct.Body>
                   <CardProduct.footer price={product.price} id={product.id} handleAddToCart={handleAddToCart} />
                 </CardProduct>
