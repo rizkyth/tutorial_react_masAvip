@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { Button } from "../Elements/Button";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/actions/cartSlice";
 
 export const CardProduct = ({ children }) => {
   return (
     <>
-      <div className="w-full max-w-xs bg-gray-600 border-gray-200 rounded-lg shadow mx-3 my-2 flex flex-col justify-between">{children}</div>
+      <div className="w-full max-w-sm bg-gray-600 border-gray-200 rounded-lg shadow mx-3 my-2 flex flex-col justify-between">{children}</div>
     </>
   );
 };
@@ -25,11 +27,12 @@ const BodyCard = ({ children, title }) => {
     </div>
   );
 };
-const FooterCard = ({ price, handleAddToCart, id }) => {
+const FooterCard = ({ price, id }) => {
+  const dispatch = useDispatch();
   return (
     <div className="flex flex-col items-center justify-between px-5 pb-3">
       <span className="text-sm font-bold text-white pb-3">$ {price.toLocaleString("id-ID", { styles: "currency", currency: "USD" })}</span>
-      <Button type="button" variant="bg-blue-600" onClick={() => handleAddToCart(id)}>
+      <Button type="button" variant="bg-blue-600" onClick={() => dispatch(addToCart({ id, qty: 1 }))}>
         Add to Cart
       </Button>
     </div>
